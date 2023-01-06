@@ -1,0 +1,217 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    padding: 0 100px 0 100px;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+/* bar de recherche principal */
+
+#barDeRecherche {
+    width: 100%;
+    height: 70px;
+    margin: 10px 0 25px 0;
+    display: flex;
+    border-radius: 5px;
+    background-color: #E7E7E7;
+}
+
+#barDeRecherche input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 0 0 0 24px;
+    font-size: 18px;
+}
+
+#barDeRecherche input::placeholder {
+    color: black;
+    opacity: 0.25;
+}
+
+#barDeRecherche button {
+    width: 70px;
+    font-size: 32px;
+    background: none;
+    border: none;
+}
+
+/* Liste des filtres actif */
+
+#filtreActif {
+    min-height: 0;
+}
+
+/* Boutons de sélection des filtres */
+
+#filtres {
+    height: 70px;
+    display: flex;
+    margin: 0 0 25px 0;
+}
+
+#filtres .typeDeFiltre {
+    height: 100%;
+    width: 170px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 0 0;
+}
+
+#filtres .typeDeFiltre div {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+#filtres .ingredients {
+    background-color: #3282F7;
+}
+
+#filtres .appareils {
+    background-color: #68D9A4;
+}
+
+#filtres .ustensiles {
+    background-color: #ED6454;
+}
+
+#filtres .typeDeFiltre input {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0 20px 0 20px;
+    color: #FFFFFF;
+}
+
+#filtres .typeDeFiltre input::placeholder {
+    color: #FFFFFF;
+    opacity: 0.5;
+    size: 18px;
+}
+
+#filtres .typeDeFiltre button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#filtres .typeDeFiltre button a {
+    font-size: 18px;
+    height: 18px;
+    flex: 1;
+}
+
+#filtres .typeDeFiltre button i {
+    font-size: 18px;
+    height: 18px;
+    margin: 0 20px 0 20px;
+}
+
+#filtres .typeDeFiltre .filtreOption {
+    display: none;
+}
+
+/* Boutons de sélection des filtres */
+
+#filtres .typeDeFiltre.deploy {
+    width: fit-content;
+    min-width: 170px;
+    max-width: 670px;
+}
+
+#filtres .typeDeFiltre.deploy div input {
+    display: flex;
+}
+
+#filtres .typeDeFiltre.deploy div button a {
+    display: none;
+}
+
+#filtres .typeDeFiltre.deploy div button i {
+    transform: rotate(180deg);
+}
+
+/* Liste des recettes */
+
+#recipes {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    display: grid;
+    grid-auto-rows: 380px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px 50px;
+    justify-items: start;
+    align-items: start;
+}
+
+#recipes article {
+    width: 100%;
+    height: 100%;
+    background-color: #C7BEBE;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#recipes article>div {
+    height: 190px;
+    padding: 0 20px 0 20px;
+    margin: 180px 0 0 0;
+    background-color: #E7E7E7;
+    border-radius: 0 0 5px 5px;
+}
+
+#recipes article>div>div {
+    display: flex;
+    flex-direction: row;
+}
+
+#recipes article>div>div:nth-child(1) {
+    height: 50px;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#recipes article>div>div:nth-child(1) * {
+    height: 18px;
+}
+
+#recipes article>div>div:nth-child(2) {
+    font-size: 12px;
+}
+
+#recipes article>div>div:nth-child(2)>div:nth-child(1) {
+    line-height: 14px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+#recipes article>div>div:nth-child(2)>div:nth-child(2) {
+    line-height: 12px;
+    flex: 1;
+    height: 95px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

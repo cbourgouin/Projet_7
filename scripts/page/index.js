@@ -1,18 +1,21 @@
 function init() {
     const recipesArticles = document.getElementById('recipes');
+    const typeDeFiltreIngrediens = document.querySelector('.filtre .typeDeFiltre.ingrediens');
+
     recipes.forEach((recipe) => {
         const recipesModel = recipeFactory(recipe);
         const recipeCardDOM = recipesModel.getRecipesCardDOM();
         recipesArticles.appendChild(recipeCardDOM);
     });
-    ListIngredient = getListIngredient(recipes);
-    ListIngredient.forEach((ingredient) => {
+
+    ListIngrediens = getListIngredient(recipes);
+    ListIngrediens.forEach((ingredient) => {
         console.log(ingredient);
     });
 
-    FiltresButtons = document.querySelectorAll('.typeDeFiltre>div>button');
 
-    FiltresButtons.forEach((FiltresButton) => FiltresButton.addEventListener('click', onClickFiltreButton));
+    FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div>button');
+    FiltresGeneralButtons.forEach((FiltresButton) => FiltresButton.addEventListener('click', onClickFiltreButton));
 }
 
 init();

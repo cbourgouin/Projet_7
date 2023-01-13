@@ -55,6 +55,5 @@ function getListUstensils(_recipes) {
             }
         }
     }
-
     return listUstensils;
 }

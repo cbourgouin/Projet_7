@@ -1,6 +1,6 @@
 function recipeFactory(data) {
     const { id, name, servings, ingredients, time, description, appliance, ustensils } = data;
-    // Creation des card des créations du photographes
+    // Creation des card des recettes
         function getRecipesCardDOM() {
             const article = document.createElement( 'article' );
             const detailRecette = document.createElement( 'div' );

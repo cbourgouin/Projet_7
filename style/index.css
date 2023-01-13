@@ -149,6 +149,10 @@ header {
     transform: rotate(180deg);
 }
 
+#filtres .typeDeFiltre.deploy .filtreOption {
+    display: grid;
+}
+
 /* Liste des recettes */
 
 #recipes {

@@ -1,6 +1,5 @@
 // Creer une liste d'ingrédient 
 function getListIngredient(_recipes) {
-    // Creation de la liste d'ingrédient et suppression des doublons
     let listIngredient = [];
     for (let i = 0; i < _recipes.length; i++) {
         for (let j = 0; j < _recipes[i].ingredients.length; j++) {
@@ -21,12 +20,11 @@ function getListIngredient(_recipes) {
 
 // Creer une liste d'appareils 
 function getListAppliance(_recipes) {
-    // Creation de la liste d'ingrédient et suppression des doublons
     let listAppliance = [];
     for (let i = 0; i < _recipes.length; i++) {
         let applianceInList = false;
         for (let k = 0; k < listAppliance.length; k++) {
-            if (_recipes[i].appliance == listIngredient[k]) {
+            if (_recipes[i].appliance == listAppliance[k]) {
                 applianceInList = true;
             }
         }
@@ -40,7 +38,6 @@ function getListAppliance(_recipes) {
 
 // Creer une liste d'ustenciles 
 function getListUstensils(_recipes) {
-    // Creation de la liste d'ingrédient et suppression des doublons
     let listUstensils = [];
     for (let i = 0; i < _recipes.length; i++) {
         for (let j = 0; j < _recipes[i].ustensils.length; j++) {

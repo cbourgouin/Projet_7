@@ -10,5 +10,5 @@ function filtreFactory(data) {
             return listButtonFiltre;
         }
 
-    return { getRecipesCardDOM }
+    return { getFilterButtonDOM }
 }

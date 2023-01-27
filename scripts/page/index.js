@@ -178,6 +178,6 @@ function inputsSearch_valueChanged() {
         removeDOMElement();
         init(recipesFiltered);
     } else {
-        filterRecipes()
+        filterRecipes();
     }
 }

@@ -54,3 +54,31 @@ function getListUstensils(_recipes) {
     }
     return listUstensils;
 }
+
+//comparaison entre la valeur de la recherche et un mot
+function comparisonString(_word, _searchString) {
+    comparison = false
+    for (let i = 0; i < _word.length - _searchString.length + 1 && comparison == false; i++) {
+        nbCom = 0;
+        for(let j = 0; j < _searchString.length && j == nbCom; j++) {
+            if(_word[i+j] === _searchString[j]) {
+                nbCom++;
+            }
+        }
+        if(nbCom == _searchString.length){
+            comparison = true;
+        }
+    }
+    return comparison;
+}
+
+//Creer une list de string qui seront les axe de recherche avec la bar principal
+function createSearchList(_recipes) {
+    let searchList = [];
+    searchList[searchList.length] = _recipes.name;
+    for(let i = 0; i < _recipes.ingredients.length; i++) {
+        searchList.push(_recipes.ingredients[i].ingredient);
+    }
+    searchList[searchList.length] = _recipes.description;
+    return searchList;
+}

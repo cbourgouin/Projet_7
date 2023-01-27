@@ -14,6 +14,7 @@ function recipeFactory(data) {
             const timeText = document.createElement( 'b' );
             timeText.textContent = time + ' min';
             const ingredient = document.createElement( 'div' );
+            ingredient.className = 'ingredients';
             ingredients.forEach((item) => {
                 const div = document.createElement( 'div' );
                 const a = document.createElement( 'a' );

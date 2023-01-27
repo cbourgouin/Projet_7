@@ -52,8 +52,49 @@ header {
 
 /* Liste des filtres actif */
 
-#filtreActif {
+#filtrersActive {
     min-height: 0;
+    display: flex;
+    color: #FFFFFF;
+}
+
+#filtrersActive .cardFilterActive {
+    height: 40px;
+    display: flex;
+    margin: 0 25px 25px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 0 14px 0 20px;
+}
+
+#filtrersActive .cardFilterActive.ingrediens {
+    background-color: #3282F7;
+    
+}
+
+#filtrersActive .cardFilterActive.appareils {
+    background-color: #68D9A4;
+    
+}
+
+#filtrersActive .cardFilterActive.ustensiles {
+    background-color: #ED6454;
+}
+
+#filtrersActive .cardFilterActive a {
+    display: flex;
+    line-height: 40px;
+    margin: 0 0 0 0;
+}
+
+#filtrersActive .cardFilterActive button {
+    color: #FFFFFF;
+    background: none;
+    border: none;
+}
+
+#filtrersActive .cardFilterActive button {
+    font-size: 20px;
 }
 
 /* Boutons de sélection des filtres */

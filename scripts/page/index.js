@@ -9,43 +9,40 @@ function init(_recipes) {
     const inputsFilter = document.querySelectorAll('.typeDeFiltre input');
     const inputsSearch = document.getElementById('inputDeRecherche');
 
-    for (let i = 0; i < _recipes.length; i++) {
-        const recipesModel = recipeFactory(_recipes[i]);
+    _recipes.forEach((recipe) => {
+        const recipesModel = recipeFactory(recipe);
         const recipeCardDOM = recipesModel.getRecipesCardDOM();
         recipesArticles.appendChild(recipeCardDOM);
-    }
+    });
 
     ListIngrediensButton = filtreFactory(getListIngredient(_recipes)).getFilterButtonDOM();
-    for (let i = 0; i < ListIngrediensButton.length; i++) {
-        typeDeFiltreIngrediens.appendChild(ListIngrediensButton[i]);
-    }
+    ListIngrediensButton.forEach((button) => {
+        typeDeFiltreIngrediens.appendChild(button);
+    });
 
     ListAppareilsButton = filtreFactory(getListAppliance(_recipes)).getFilterButtonDOM();
-    for (let i = 0; i < ListAppareilsButton.length; i++) {
-        typeDeFiltreAppliance.appendChild(ListAppareilsButton[i]);
-    }
+    ListAppareilsButton.forEach((button) => {
+        typeDeFiltreAppliance.appendChild(button);
+    });
 
     ListUstensilsButton = filtreFactory(getListUstensils(_recipes)).getFilterButtonDOM();
-    for (let i = 0; i < ListUstensilsButton.length; i++) {
-        typeDeFiltreUstensils.appendChild(ListUstensilsButton[i]);
-    }
+    ListUstensilsButton.forEach((button) => {
+        typeDeFiltreUstensils.appendChild(button);
+    });
 
-
-    for (let i = 0; i < inputsFilter.length; i++) {
-        inputsFilter[i].addEventListener('input', inputsFilter_valueChanged);
-    }
+    inputsFilter.forEach((input) => {
+        input.addEventListener('input', inputsFilter_valueChanged);
+    });
 
     inputsSearch.addEventListener('input', inputsSearch_valueChanged);
 
     const buttonFiltre = document.querySelectorAll('.filtreOption button');
-    for (let i = 0; i < buttonFiltre.length; i++) {
-        buttonFiltre[i].addEventListener('click', addFilterActif);
-    }
+    buttonFiltre.forEach((button) => {
+        button.addEventListener('click', addFilterActif);
+    });
 
     FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div>button');
-    for (let i = 0; i < FiltresGeneralButtons.length; i++) {
-        FiltresGeneralButtons[i].addEventListener('click', onClickFiltreButton);
-    }
+    FiltresGeneralButtons.forEach((FiltresButton) => FiltresButton.addEventListener('click', onClickFiltreButton));
 }
 
 init(recipes);
@@ -55,11 +52,11 @@ function onClickFiltreButton() {
     const clicktypeFiltre = this.parentElement.parentElement;
     const otherTypeFiltres = document.querySelectorAll("#filtres .typeDeFiltre");
     if (clicktypeFiltre.classList.length == 2) {
-        for (let i = 0; i < otherTypeFiltres.length; i++) {
-            if (otherTypeFiltres[i].classList.length == 3) {
-                otherTypeFiltres[i].classList.remove('deploy');
+        otherTypeFiltres.forEach((otherTypeFiltre) => {
+            if (otherTypeFiltre.classList.length == 3) {
+                otherTypeFiltre.classList.remove('deploy');
             }
-        }
+        });
         clicktypeFiltre.classList.add('deploy');
     } else if (clicktypeFiltre.classList.length == 3) {
         clicktypeFiltre.classList.remove('deploy');
@@ -72,9 +69,7 @@ function addFilterActif() {
     const zoneCardFilter = document.getElementById('filtrersActive');
     zoneCardFilter.append(cardFilter);
     const btnDelFiltreActif = document.querySelectorAll('.buttonDelCard');
-    for (let i = 0; i < btnDelFiltreActif.length; i++) {
-        btnDelFiltreActif[i].addEventListener('click', removeFilterActif)
-    }
+    btnDelFiltreActif.forEach((btn) => btn.addEventListener('click', removeFilterActif));
     filterRecipes();
 }
 
@@ -87,12 +82,13 @@ function removeFilterActif() {
 function removeDOMElement() {
     const btnFilters = document.querySelectorAll('.typeDeFiltre .filtreOption button');
     const cardRecipes = document.querySelectorAll('#recipes article');
-    for (let i = 0; i < btnFilters.length; i++) {
-        btnFilters[i].remove();
-    }
-    for (let i = 0; i < cardRecipes.length; i++) {
-        cardRecipes[i].remove();
-    }
+    btnFilters.forEach((btn) => {
+        btn.remove();
+    });
+    cardRecipes.forEach((card) => {
+        card.remove();
+    });
+
 }
 // filtrer les recettes et recreer les element sur la page 
 function filterRecipes() {
@@ -100,103 +96,88 @@ function filterRecipes() {
     const filtrersActive = document.getElementById('filtrersActive');
     const cardFiltersActive = filtrersActive.querySelectorAll('.cardFilterActive');
     if (cardFiltersActive.length > 0) {
-        for (let i = 0; i < cardFiltersActive.length; i++) {
+        cardFiltersActive.forEach((card) => {
             filters.push(
                 {
-                    text: cardFiltersActive[i].querySelector('a').textContent,
-                    type: cardFiltersActive[i].classList[1]
+                    text: card.querySelector('a').textContent,
+                    type: card.classList[1]
                 }
             );
-        }
+        });
     }
-    for (let i = 0; i < recipes.length; i++) {
-        recipesFiltered[i] = recipes[i];
-    }
+    recipesFiltered = Array.from(recipes);
     if (filters.length > 0) {
-        for (let i = 0; i < filters.length; i++) {
-            let newRecipesFiltered = [];
-            for (let u = 0; u < recipesFiltered.length; u++) {
-                switch (filters[i].type) {
+        filters.forEach((filter) => {
+            for (let i = 0; i < recipesFiltered.length; i++) {
+                switch (filter.type) {
                     case 'ingrediens':
                         var corespond = false;
-                        for (let k = 0; k < recipesFiltered[u].ingredients.length; k++) {
-                            if (recipesFiltered[u].ingredients[k].ingredient === filters[i].text) {
+                        recipesFiltered[i].ingredients.forEach((ingredient) => {
+                            if (ingredient.ingredient === filter.text) {
                                 corespond = true;
                             }
-                        }
-                        if (corespond === true) {
-                            newRecipesFiltered[newRecipesFiltered.length] = recipesFiltered[u];
+                        });
+                        if (corespond === false) {
+                            recipesFiltered.splice(i, 1);
+                            i--;
                         }
                         break;
                     case 'appareils':
-                        if (recipesFiltered[u].appliance === filters[i].text) {
-                            newRecipesFiltered[newRecipesFiltered.length] = recipesFiltered[u];
+                        if (recipesFiltered[i].appliance !== filter.text) {
+                            recipesFiltered.splice(i, 1);
+                            i--;
                         }
                         break;
                     case 'ustensiles':
                         var corespond = false;
-                        for (let k = 0; k < recipesFiltered[u].ustensils.length; k++) {
-                            if (recipesFiltered[u].ustensils[k] === filters[i].text) {
+                        recipesFiltered[i].ustensils.forEach((ustensil) => {
+                            if (ustensil === filter.text) {
                                 corespond = true;
                             }
-                        }
-                        if (corespond === true) {
-                            newRecipesFiltered[newRecipesFiltered.length] = recipesFiltered[u];
+                        });
+                        if (corespond === false) {
+                            recipesFiltered.splice(i, 1);
+                            i--;
                         }
                         break;
                 }
             }
-            recipesFiltered = [];
-            for (let i = 0; i < newRecipesFiltered.length; i++) {
-                recipesFiltered[i] = newRecipesFiltered[i];
-            }
-        }
+        });
     }
     console.log(recipesFiltered);
     removeDOMElement();
     init(recipesFiltered);
-    const otherTypeFiltres = document.querySelectorAll("#filtres .typeDeFiltre");
-    for (let i = 0; i < otherTypeFiltres.length; i++) {
-        if (otherTypeFiltres[i].classList.length == 3) {
-            otherTypeFiltres[i].classList.remove('deploy');
-        }
-    }
 }
 
 function inputsFilter_valueChanged() {
-    let listButtons = this.parentElement.parentElement.querySelectorAll(".filtreOption button");
-    for (let i = 0; i < listButtons.length; i++) {
-        if (!comparisonString(listButtons[i].innerText, this.value)) {
-            listButtons[i].style.display = 'none';
-        } else {
-            listButtons[i].style.display = 'block';
+    var listButtons = this.parentElement.parentElement.querySelectorAll(".filtreOption button");
+        for(var i = 0; i < listButtons.length; i++) {
+            if(!comparisonString(listButtons[i].innerText, this.value)){
+                listButtons[i].style.display = 'none';
+            } else {
+                listButtons[i].style.display = 'block';
+            }
         }
-    }
 }
 
 function inputsSearch_valueChanged() {
-    if (this.value.length >= 3) {
-        filterRecipes();
-        let newRecipesFiltered = [];
+    if(this.value.length >= 3) {
         for (let i = 0; i < recipesFiltered.length; i++) {
-            let corespond = false;
+            var corespond = false;
             searchList = createSearchList(recipesFiltered[i]);
-            for (let j = 0; j < searchList.length; j++) {
-                if (comparisonString(searchList[j], this.value)) {
+            searchList.forEach((searchWord) => {
+                if(comparisonString(searchWord, this.value)){
                     corespond = true;
                 }
+            });
+            if(corespond === false){
+                recipesFiltered.splice(i, 1);
+                i--;
             }
-            if (corespond === true) {
-                newRecipesFiltered[newRecipesFiltered.length] = recipesFiltered[i];
-            }
-        }
-        recipesFiltered = [];
-        for (let i = 0; i < newRecipesFiltered.length; i++) {
-            recipesFiltered[i] = newRecipesFiltered[i];
         }
         removeDOMElement();
         init(recipesFiltered);
     } else {
-        filterRecipes();
+        filterRecipes()
     }
 }

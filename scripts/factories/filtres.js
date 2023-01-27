@@ -2,12 +2,11 @@ function filtreFactory(data) {
     // Creation des bouton de filtre
         function getFilterButtonDOM() {
             let listButtonFiltre = [];
-
-            for(let i = 0; i < data.length; i++) {
+            data.forEach((item) => {
                 const button = document.createElement('button');
-                button.textContent = data[i];
+                button.textContent = item;
                 listButtonFiltre.push(button);
-            }
+            });
             return listButtonFiltre;
         }
 

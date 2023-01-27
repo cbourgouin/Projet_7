@@ -75,10 +75,8 @@ function comparisonString(_word, _searchString) {
 //Creer une list de string qui seront les axe de recherche avec la bar principal
 function createSearchList(_recipes) {
     let searchList = [];
-    searchList[searchList.length] = _recipes.name;
-    for(let i = 0; i < _recipes.ingredients.length; i++) {
-        searchList.push(_recipes.ingredients[i].ingredient);
-    }
-    searchList[searchList.length] = _recipes.description;
+    searchList.push(_recipes.name);
+    _recipes.ingredients.forEach((ingredient) => searchList.push(ingredient.ingredient));
+    searchList.push(_recipes.description);
     return searchList;
 }

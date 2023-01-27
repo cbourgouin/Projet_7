@@ -15,19 +15,20 @@ function recipeFactory(data) {
             timeText.textContent = time + ' min';
             const ingredient = document.createElement( 'div' );
             ingredient.className = 'ingredients';
-            ingredients.forEach((item) => {
+
+            for ( var i = 0; i < ingredients.length; i++ ) {
                 const div = document.createElement( 'div' );
                 const a = document.createElement( 'a' );
                 const b = document.createElement('b');
                 b.textContent = item.ingredient + ': ';
                 div.appendChild(b);
-                if(item.unit === undefined)
-                    a.textContent = item.quantity;
+                if(ingredients[i].unit === undefined)
+                    a.textContent = ingredients[i].quantity;
                 else
-                    a.textContent = item.quantity + ' ' + item.unit;
+                    a.textContent = ingredients[i].quantity + ' ' + ingredients[i].unit;
                 div.appendChild(a);
                 ingredient.appendChild(div);
-            });
+            }
             const etape = document.createElement( 'div' );
             etape.textContent = description;
 

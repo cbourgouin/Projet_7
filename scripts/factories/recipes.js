@@ -20,7 +20,7 @@ function recipeFactory(data) {
                 const div = document.createElement( 'div' );
                 const a = document.createElement( 'a' );
                 const b = document.createElement('b');
-                b.textContent = item.ingredient + ': ';
+                b.textContent = ingredients[i].ingredient + ': ';
                 div.appendChild(b);
                 if(ingredients[i].unit === undefined)
                     a.textContent = ingredients[i].quantity;

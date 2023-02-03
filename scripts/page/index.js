@@ -94,6 +94,7 @@ function removeDOMElement() {
         cardRecipes[i].remove();
     }
 }
+
 // filtrer les recettes et recreer les element sur la page 
 function filterRecipes() {
     let filters = [];
@@ -103,7 +104,7 @@ function filterRecipes() {
         for (let i = 0; i < cardFiltersActive.length; i++) {
             filters.push(
                 {
-                    text: cardFiltersActive[i].querySelector('a').textContent,
+                    text: cardFiltersActive[i].querySelector('a').textContent.toLowerCase(),
                     type: cardFiltersActive[i].classList[1]
                 }
             );
@@ -120,7 +121,7 @@ function filterRecipes() {
                     case 'ingrediens':
                         var corespond = false;
                         for (let k = 0; k < recipesFiltered[u].ingredients.length; k++) {
-                            if (recipesFiltered[u].ingredients[k].ingredient === filters[i].text) {
+                            if (recipesFiltered[u].ingredients[k].ingredient.toLowerCase() === filters[i].text ||recipesFiltered[u].ingredients[k].ingredient.toLowerCase() === filters[i].text + 's') {
                                 corespond = true;
                             }
                         }
@@ -129,14 +130,14 @@ function filterRecipes() {
                         }
                         break;
                     case 'appareils':
-                        if (recipesFiltered[u].appliance === filters[i].text) {
+                        if (recipesFiltered[u].appliance.toLowerCase() === filters[i].text) {
                             newRecipesFiltered[newRecipesFiltered.length] = recipesFiltered[u];
                         }
                         break;
                     case 'ustensiles':
                         var corespond = false;
                         for (let k = 0; k < recipesFiltered[u].ustensils.length; k++) {
-                            if (recipesFiltered[u].ustensils[k] === filters[i].text) {
+                            if (recipesFiltered[u].ustensils[k].toLowerCase() === filters[i].text) {
                                 corespond = true;
                             }
                         }
@@ -163,6 +164,9 @@ function filterRecipes() {
     }
 }
 
+/**
+ * 
+ */
 function inputsFilter_valueChanged() {
     let listButtons = this.parentElement.parentElement.querySelectorAll(".filtreOption button");
     for (let i = 0; i < listButtons.length; i++) {

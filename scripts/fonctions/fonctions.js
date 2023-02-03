@@ -5,7 +5,7 @@ function getListIngredient(_recipes) {
         for (let j = 0; j < _recipes[i].ingredients.length; j++) {
             let ingredientInList = false;
             for (let k = 0; k < listIngredient.length; k++) {
-                if (_recipes[i].ingredients[j].ingredient == listIngredient[k] || _recipes[i].ingredients[j].ingredient == listIngredient[k] + "s") {
+                if (_recipes[i].ingredients[j].ingredient.toLowerCase() == listIngredient[k].toLowerCase() || _recipes[i].ingredients[j].ingredient.toLowerCase() == listIngredient[k].toLowerCase() + "s") {
                     ingredientInList = true;
                 }
             }
@@ -24,7 +24,7 @@ function getListAppliance(_recipes) {
     for (let i = 0; i < _recipes.length; i++) {
         let applianceInList = false;
         for (let k = 0; k < listAppliance.length; k++) {
-            if (_recipes[i].appliance == listAppliance[k]) {
+            if (_recipes[i].appliance.toLowerCase() == listAppliance[k].toLowerCase()) {
                 applianceInList = true;
             }
         }
@@ -43,7 +43,7 @@ function getListUstensils(_recipes) {
         for (let j = 0; j < _recipes[i].ustensils.length; j++) {
             let ustensilsInList = false;
             for (let k = 0; k < listUstensils.length; k++) {
-                if (_recipes[i].ustensils[j] == listUstensils[k]) {
+                if (_recipes[i].ustensils[j].toLowerCase() == listUstensils[k].toLowerCase()) {
                     ustensilsInList = true;
                 }
             }
@@ -57,18 +57,11 @@ function getListUstensils(_recipes) {
 
 //comparaison entre la valeur de la recherche et un mot
 function comparisonString(_word, _searchString) {
-    comparison = false
-    for (let i = 0; i < _word.length - _searchString.length + 1 && comparison == false; i++) {
-        nbCom = 0;
-        for(let j = 0; j < _searchString.length && j == nbCom; j++) {
-            if(_word[i+j] === _searchString[j]) {
-                nbCom++;
-            }
-        }
-        if(nbCom == _searchString.length){
-            comparison = true;
-        }
+    let comparison = false
+    if(_word.toLowerCase().includes(_searchString.toLowerCase() || (_word + 's').toLowerCase().includes(_searchString.toLowerCase()))){
+        comparison = true;
     }
+    
     return comparison;
 }
 

@@ -5,7 +5,7 @@ function getListIngredient(_recipes) {
         for (let j = 0; j < _recipes[i].ingredients.length; j++) {
             let ingredientInList = false;
             for (let k = 0; k < listIngredient.length; k++) {
-                if (_recipes[i].ingredients[j].ingredient == listIngredient[k] || _recipes[i].ingredients[j].ingredient == listIngredient[k] + "s") {
+                if (_recipes[i].ingredients[j].ingredient.toLowerCase() == listIngredient[k].toLowerCase() || _recipes[i].ingredients[j].ingredient.toLowerCase() == listIngredient[k].toLowerCase() + "s") {
                     ingredientInList = true;
                 }
             }
@@ -57,17 +57,9 @@ function getListUstensils(_recipes) {
 
 //comparaison entre la valeur de la recherche et un mot
 function comparisonString(_word, _searchString) {
-    comparison = false
-    for (let i = 0; i < _word.length - _searchString.length + 1 && comparison == false; i++) {
-        nbCom = 0;
-        for(let j = 0; j < _searchString.length && j == nbCom; j++) {
-            if(_word[i+j] === _searchString[j]) {
-                nbCom++;
-            }
-        }
-        if(nbCom == _searchString.length){
-            comparison = true;
-        }
+    let comparison = false;
+    if(_word.toLowerCase().includes(_searchString.toLowerCase()) || (_word.toLowerCase() + 's').includes(_searchString.toLowerCase())) {
+        comparison = true;
     }
     return comparison;
 }

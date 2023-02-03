@@ -99,7 +99,7 @@ function filterRecipes() {
         cardFiltersActive.forEach((card) => {
             filters.push(
                 {
-                    text: card.querySelector('a').textContent,
+                    text: card.querySelector('a').textContent.toLowerCase(),
                     type: card.classList[1]
                 }
             );
@@ -113,7 +113,7 @@ function filterRecipes() {
                     case 'ingrediens':
                         var corespond = false;
                         recipesFiltered[i].ingredients.forEach((ingredient) => {
-                            if (ingredient.ingredient === filter.text) {
+                            if (ingredient.ingredient.toLowerCase() === filter.text || ingredient.ingredient.toLowerCase() === filter.text + 's') {
                                 corespond = true;
                             }
                         });
@@ -123,7 +123,7 @@ function filterRecipes() {
                         }
                         break;
                     case 'appareils':
-                        if (recipesFiltered[i].appliance !== filter.text) {
+                        if (recipesFiltered[i].appliance.toLowerCase() !== filter.text) {
                             recipesFiltered.splice(i, 1);
                             i--;
                         }
@@ -131,7 +131,7 @@ function filterRecipes() {
                     case 'ustensiles':
                         var corespond = false;
                         recipesFiltered[i].ustensils.forEach((ustensil) => {
-                            if (ustensil === filter.text) {
+                            if (ustensil.toLowerCase() === filter.text) {
                                 corespond = true;
                             }
                         });

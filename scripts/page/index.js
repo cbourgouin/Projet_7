@@ -152,7 +152,7 @@ function filterRecipes() {
 function inputsFilter_valueChanged() {
     var listButtons = this.parentElement.parentElement.querySelectorAll(".filtreOption button");
         for(var i = 0; i < listButtons.length; i++) {
-            if(!comparisonString(listButtons[i].innerText, this.value)){
+            if(!comparisonString(listButtons[i].innerText, this.value) && this.value.length > 0){
                 listButtons[i].style.display = 'none';
             } else {
                 listButtons[i].style.display = 'block';

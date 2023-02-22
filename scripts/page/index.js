@@ -164,20 +164,19 @@ function filterRecipes() {
     }
 }
 
-/**
- * 
- */
 function inputsFilter_valueChanged() {
     let listButtons = this.parentElement.parentElement.querySelectorAll(".filtreOption button");
     for (let i = 0; i < listButtons.length; i++) {
-        if (!comparisonString(listButtons[i].innerText, this.value)) {
+        if (!comparisonString(listButtons[i].innerText, this.value) && this.value.length > 0) {
             listButtons[i].style.display = 'none';
         } else {
             listButtons[i].style.display = 'block';
         }
     }
 }
-
+/**
+ * https://jsben.ch/aHlhz
+ */
 function inputsSearch_valueChanged() {
     if (this.value.length >= 3) {
         filterRecipes();

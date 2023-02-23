@@ -42,7 +42,7 @@ function init(_recipes) {
         buttonFiltre[i].addEventListener('click', addFilterActif);
     }
 
-    FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div>button');
+    FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div:nth-child(1)>button');
     for (let i = 0; i < FiltresGeneralButtons.length; i++) {
         FiltresGeneralButtons[i].addEventListener('click', onClickFiltreButton);
     }

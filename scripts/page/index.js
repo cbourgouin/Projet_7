@@ -41,7 +41,7 @@ function init(_recipes) {
         button.addEventListener('click', addFilterActif);
     });
 
-    FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div>button');
+    FiltresGeneralButtons = document.querySelectorAll('.typeDeFiltre>div:nth-child(1)>button');
     FiltresGeneralButtons.forEach((FiltresButton) => FiltresButton.addEventListener('click', onClickFiltreButton));
 }
 
